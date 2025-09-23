@@ -10,6 +10,8 @@ public class TimingManager : MonoBehaviour
     [SerializeField] RectTransform[] timingRect = null;
     Vector2[] timingBoxs = null;
     [SerializeField] private EffectManager theEffect;
+    [SerializeField] private ScoreManager theScore;
+    [SerializeField] private ComboManager theCombo;
     void Start()
     {
 
@@ -37,10 +39,13 @@ public class TimingManager : MonoBehaviour
                         theEffect.NoteHitEffect();
                     boxNoteList.RemoveAt(i);
                     theEffect.JudgementEffect(x);
+
+                    theScore.IncreaseScore(x);
                     return;
                 }
             }
         }
+        theCombo.ResetCombo();
         theEffect.JudgementEffect(timingBoxs.Length);
     }
 }

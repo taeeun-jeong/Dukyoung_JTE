@@ -1,23 +1,25 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class EmptyNote : MonoBehaviour
 {
-    AudioSource myAudio;
-    bool musicStart = false;
+    AudioSource theAudio;
+    bool canPlay = false;
 
     private void Start()
     {
-        myAudio = GetComponent<AudioSource>();
+        theAudio = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!musicStart)
+        if (canPlay == false)
         {
             if (collision.CompareTag("Note"))
             {
-                myAudio.Play();
-                musicStart = true;
+                theAudio.Play();
+                canPlay = true;
             }
         }
     }

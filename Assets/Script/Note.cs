@@ -6,9 +6,11 @@ public class Note : MonoBehaviour
 
     UnityEngine.UI.Image noteImage;
 
-    void Start()
+    void OnEnable()
     {
-        noteImage = GetComponent<UnityEngine.UI.Image>();
+        if(noteImage == null)
+            noteImage = GetComponent<UnityEngine.UI.Image>();
+        noteImage.enabled = true;
     }
 
     public void HideNote()

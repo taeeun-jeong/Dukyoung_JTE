@@ -8,8 +8,8 @@ public class NoteManager : MonoBehaviour
     double currentTime = 0d;
 
     [SerializeField] Transform tfNoteAppear = null;
-    [SerializeField] GameObject goNote = null;
     [SerializeField] EffectManager theEffect;
+    [SerializeField] ComboManager theCombo;
 
     TimingManager theTimingManager;
 
@@ -25,8 +25,9 @@ public class NoteManager : MonoBehaviour
 
         if(currentTime >= 60d / bpm)
         {
-            GameObject t_note = Instantiate(goNote, tfNoteAppear.position, Quaternion.identity);
-            t_note.transform.SetParent(this.transform);
+            GameObject t_note = ObjectPool.instance.noteQueue.Dequeue();
+            t_note.transform.position = tfNoteAppear.position;
+            t_note.SetActive(true);
             theTimingManager.boxNoteList.Add(t_note);
             currentTime -= 60d / bpm;
         }
@@ -37,9 +38,16 @@ public class NoteManager : MonoBehaviour
         if(collision.CompareTag("Note"))
         {
             if (collision.GetComponent<Note>().GetNoteFlag())
+            {
                 theEffect.JudgementEffect(4);
+                theCombo.ResetCombo();
+            }
+                
+
             theTimingManager.boxNoteList.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+
+            ObjectPool.instance.noteQueue.Enqueue(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
