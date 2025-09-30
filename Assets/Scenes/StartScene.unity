@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12adb9bbfa7d7c48bdecb3f0cc1e622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartButton
-  sceneNameToLoad: SelectScene
+  sceneNameToLoad: Stage1
 --- !u!4 &1109015445
 Transform:
   m_ObjectHideFlags: 0
