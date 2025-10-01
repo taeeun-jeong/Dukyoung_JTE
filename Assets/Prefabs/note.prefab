@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ee21a162609e441b4e70c477154680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Note
-  noteSpeed: 400
+  noteSpeed: 800
 --- !u!61 &4638087319347456011
 BoxCollider2D:
   m_ObjectHideFlags: 0
